@@ -1,0 +1,81 @@
+
+Specify scope
+https://bittrex.com/Home/Api
+
+Estos son los 4 métodos de APIs para consulta de históricos
+
+Precios Actuales
+https://bittrex.com/api/v1.1/public/getticker?market=btc-ltc
+{"success":true,"message":"","result":{"Bid":0.01612507,"Ask":0.01622000,"Last":0.01612507}}
+Valores de últimas 24 horas
+https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-ltc
+{"success":true,"message":"","result":[{"MarketName":"BTC-LTC","High":0.01697348,"Low":0.01609689,"Volume":51053.33205366,"Last":0.01622000,"BaseVolume":850.11835705,"TimeStamp":"2018-01-20T09:53:25.37","Bid":0.01612510,"Ask":0.01621000,"OpenBuyOrders":2045,"OpenSellOrders":7794,"PrevDay":0.01671082,"Created":"2014-02-13T00:00:00"}]}
+Libros de compras y ventas
+https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-LTC&type=both
+{"success":true,"message":"","result":{"buy":[{"Quantity":5.00000000,"Rate":0.01612512},{"Quantity":1.23945442,"Rate":0.01612511},{"Quantity":5.00000000,"Rate":0.01612510},{"Quantity":5.13736328,"Rate":0.01612507},{"Quantity":3.10738602,"Rate":0.01612500},{"Quantity":7.45028761,"Rate":0.01612405},{"Quantity":0.06502102,"Rate":0.01611531},{"Quantity":20.12150000,"Rate":0.01610700},{"Quantity":13.81800000,"Rate":0.01610201},{"Quantity":9.49987724,"Rate":0.01609689},{"Quantity":0.62000000,"Rate":0.01609642},{"Quantity":1.46779738,"Rate":0.01609000},{"Quantity":1.29649197,"Rate":0.01608829},{"Quantity":0.14772060,"Rate":0.01608788},{"Quantity":21.75600837,"Rate":0.01608750},
+Histórico de transacciones 
+https://bittrex.com/api/v1.1/public/getmarkethistory?market=BTC-LTC
+{"success":true,"message":"","result":[{"Id":140082340,"TimeStamp":"2018-01-20T10:05:06.787","Quantity":2.89406719,"Price":0.01629394,"Total":0.04715575,"FillType":"FILL","OrderType":"BUY"},{"Id":140082335,"TimeStamp":"2018-01-20T10:05:05.77","Quantity":0.86502391,"Price":0.01629394,"Total":0.01409464,"FillType":"FILL","OrderType":"BUY"},{"Id":140082332,"TimeStamp":"2018-01-20T10:05:04.787","Quantity":0.29851846,"Price":0.01629395,"Total":0.00486404,"FillType":"FILL","OrderType":"SELL"},{"Id":140082328,"TimeStamp":"2018-01-
+
+
+
+
+
+https://bittrex.com/api/v1.1/public/getticker?market=btc-ltc 
+
+bittrex.getticker( { market : 'BTC-LTC' }, function( data, err ) {
+  console.log( data );
+});
+
+https://bittrex.com/api/v1.1/public/getmarketsummary?market=btc-ltc    
+
+bittrex.getmarketsummary( { market : 'BTC-LTC'}, function( data, err ) {
+  console.log( data );
+});
+
+https://bittrex.com/api/v1.1/public/getorderbook?market=BTC-LTC&type=both 
+
+bittrex.getorderbook({ market : 'BTC-LTC', depth : 10, type : 'both' }, function( data, err ) {
+  console.log( data );
+});
+
+https://bittrex.com/api/v1.1/public/getmarkethistory?market=BTC-LTC
+
+bittrex.getmarkethistory({ market : 'BTC-LTC' }, function( data, err ) {
+  console.log( data );
+});
+
+
+Create methods and save access keys 
+https://www.npmjs.com/package/node.bittrex.api
+
+
+NODE 
+
+var bittrex = require('node-bittrex-api');
+
+bittrex.websockets.subscribe(['BTC-ETH','BTC-SC','BTC-ZEN'], function(data, client) {
+  if (data.M === 'updateExchangeState') {
+    data.A.forEach(function(data_for) {
+      console.log('Market Update for '+ data_for.MarketName, data_for);
+    });
+  }
+});
+
+bittrex.getticker( { market : 'BTC-LTC' }, function( data, err ) {
+  console.log( data );
+});
+
+bittrex.getmarketsummary( { market : 'BTC-LTC'}, function( data, err ) {
+  console.log( data );
+});
+
+bittrex.getorderbook({ market : 'BTC-LTC', depth : 10, type : 'both' }, function( data, err ) {
+  console.log( data );
+});
+
+bittrex.getmarkethistory({ market : 'BTC-LTC' }, function( data, err ) {
+  console.log( data );
+});
+Inject into MySQL
+https://www.opentechguides.com/how-to/article/nodejs/124/express-mysql-json.html

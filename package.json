@@ -1,0 +1,14 @@
+{
+  "name": "ctb",
+  "version": "1.0.0",
+  "description": "Cryptocurrency Trading Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-bittrex-api": "^0.8.1"
+  }
+}
