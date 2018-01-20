@@ -1,25 +1,47 @@
-var bittrex = require('node-bittrex-api');
+const bittrex = require('node-bittrex-api');
+const mysql = require('mysql');
+
+
+/**Config msyql */
+// Configure MySQL connection
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'node',
+  password: 'node',
+  database: 'node_project'
+})
+
+//Establish MySQL connection
+connection.connect(function (err) {
+  if (err)
+    throw err
+  else {
+    console.log('Connected to MySQL');
+    // Start the app when connection is ready
+    console.log('Server listening on port 3000');
+  }
+});
 
 bittrex.options({
   websockets: {
-    onConnect: function() {
+    onConnect: function () {
       console.log('Websocket connected');
-      bittrex.websockets.subscribe(['BTC-ETH','BTC-SC','BTC-ZEN'], function(data) {
+      bittrex.websockets.subscribe(['BTC-ETH', 'BTC-SC', 'BTC-ZEN'], function (data) {
         if (data.M === 'updateExchangeState') {
-          data.A.forEach(function(data_for) {
-            console.log('Market Update for '+ data_for.MarketName, data_for);
+          data.A.forEach(function (data_for) {
+            console.log('Market Update for ' + data_for.MarketName, data_for);
           });
         }
       });
     },
-    onDisconnect: function() {
+    onDisconnect: function () {
       console.log('Websocket disconnected');
     }
   }
 });
- 
+
 var websocketClient;
-bittrex.websockets.client(function(client) {
+bittrex.websockets.client(function (client) {
   websocketClient = client;
 });
 
