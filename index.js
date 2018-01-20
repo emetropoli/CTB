@@ -6,10 +6,11 @@ const mysql = require('mysql');
 // Configure MySQL connection
 const connection = mysql.createConnection({
   host: 'localhost',
-  user: 'node',
-  password: 'node',
-  database: 'node_project'
-})
+  user: 'root',
+  password: 'SH1N1G4M1..2006',
+  database: 'ctb_dev'
+});
+
 
 //Establish MySQL connection
 connection.connect(function (err) {
